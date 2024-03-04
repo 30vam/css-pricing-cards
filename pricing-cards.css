@@ -18,6 +18,7 @@
     /* Card general div variables */
     --card-min-height: 25em;
     --card-width: 90%;
+    --card-max-width: 400px;
     --card-border-radius: 0.8em 0.8em 0.4em 0.4em;
     --card-background: rgb(233, 233, 233);
 
@@ -37,7 +38,8 @@
     --card-banner-footer-padding: 0 1.5em 0.2em;
 
     /* Card features div variables */
-    --card-features-padding: 0.5em 1em 1em;
+    --card-features-padding: 0em 1em 1em;
+    --card-features-li-padding: 0.5em 0.5em;
 
     /* Card hover variables */
     --card-hover-height: calc(var(--card-min-height) + 5em);
@@ -127,6 +129,7 @@ main h1 {
     justify-content: flex-start;
     align-items: stretch;
     width: var(--card-width);
+    max-width: var(--card-max-width);
     height: var(--card-min-height);
     border-radius: var(--card-border-radius);
     transition: var(--fast-transition);
@@ -188,6 +191,18 @@ main h1 {
     justify-content: space-between;
     align-items: center;
     padding: var(--card-features-padding);
+}
+
+.card-features li {
+   /*  display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center; */
+    padding: var(--card-features-li-padding);
+}
+
+.card-features li:last-of-type {
+    border: none;
 }
 
 .card-features img {
