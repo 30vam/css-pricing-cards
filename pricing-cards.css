@@ -1,8 +1,8 @@
 :root {
     --large-gap: 2.5em;
     --small-gap: 1em;
-    --fast-transition: all 0.25s ease-out;
-    --slow-transition: all 0.5s ease-out;
+    --fast-transition-speed: 0.25s;
+    --slow-transition-speed: 0.5s;
 
     --h1-font: 900 44px/1.5 "IBM Plex Sans Arabic", sans-serif;
     --h2-font: 400 32px/1.5 "Rubik", sans-serif;
@@ -12,27 +12,25 @@
     --main-text-color: black;
     --main-background: rgb(230, 241, 255);
 
-    --header-padding: 1.5em 1em 0.5em;
+    /* Header variables */
+    --header-button-background: white;
     --header-button-hover-background: rgb(223, 223, 223);
-
-    /* Card general div variables */
-    --card-min-height: 25em;
-    --card-width: 90%;
-    --card-max-width: 400px;
-    --card-border-radius: 0.8em 0.8em 0.4em 0.4em;
-    --card-background: rgb(233, 233, 233);
-
-    /* Card banner div variables */
-    --card-banner-height: 40%;
-    --card-banner-fontcolor: rgb(223, 223, 223);
-    --card-banner-padding: 0.5em 1em 10em;
-    --card-banner-price-size: 64px;
-    /* Card button variables */
-    --button-padding: 0.25em 0.5em;
-    --button-border: 0px solid rgb(59, 56, 56);
+    --header-button-desktop-width: 20%;
     --button-border-radius: 0.5em;
     --button-font: 300 20px/1.5 "Rubik", sans-serif;
     --button-icon-width: 20px;
+
+    /* Card general div variables */
+    --card-height: 25em;
+    --card-border-radius: 0.8em 0.8em 0.4em 0.4em;
+    --card-background: rgb(233, 233, 233);
+    --card-box-shadow: 0px 10px 25px 2px rgba(0, 0, 0, 0.5);
+
+    /* Card banner div variables */
+    --card-banner-fontcolor: rgb(223, 223, 223);
+    --card-banner-price-size: 64px;
+    --card-banner-box-shadow: inset 0px 0px 100px 1px rgba(0, 0, 0, 0.5);
+
     /* Card banner footer variables */
     --card-banner-footer-font-size: 1em;
     --card-banner-footer-padding: 0 1.5em 0.2em;
@@ -45,139 +43,106 @@
     --card-hover-height: 30em;
     --card-banner-hover-height: 46%;
     --card-banner-hover-background: rgba(0, 0, 0, 0.6);
+    --card-banner-hover-box-shadow: inset 0px 0px 100px 1px rgb(0, 0, 0, 1);
     --card-features-hover-top-padding: 1em;
 
     /* Individual card variables */
-    /* Tier 1 card*/ 
-    --tier1-box-shadow: 0px 25px 100px 0px rgba(0, 137, 249, 0.6);
-    --tier1-banner-background: linear-gradient(180deg, rgba(0,66,181,1) 0%, rgba(0,212,249,1) 100%);
-    --tier1-banner-shadow: inset 0px 0px 100px 1px rgba(0, 0, 0, 0.5);
-    --tier1-banner-hover-background: linear-gradient(180deg, rgba(0,66,181,1) 0%, rgba(0,212,249,1) 100%);
-    --tier1-banner-hover-shadow: inset 0px 0px 100px 1px rgb(0, 0, 0, 1);
-    --tier1-hover-box-shadow: 0px 0px 50px 0px rgb(0, 94, 255);
-    /* Tier 2 card*/
-    --tier2-box-shadow: 0px 25px 100px 0px rgba(158, 69, 69, 0.6);
-    --tier2-banner-background: linear-gradient(180deg, rgba(236,101,101,1) 0%, rgba(71,27,30,1) 100%);
-    --tier2-banner-shadow: inset 0px 0px 100px 1px rgba(0, 0, 0, 0.5);
-    --tier2-banner-hover-background: linear-gradient(180deg, rgba(236,101,101,1) 0%, rgba(71,27,30,1) 100%);
-    --tier2-banner-hover-shadow: inset 0px 0px 100px 1px rgb(0, 0, 0, 1);
-    --tier2-hover-box-shadow: 0px 0px 50px 0px rgb(245, 133, 133);
-    /* Tier 3 card*/
-    --tier3-box-shadow: 0px 25px 100px 0px rgba(127, 168, 2, 0.5);
-    --tier3-banner-background: linear-gradient(180deg, rgba(78,98,18,1) 0%, rgba(192,245,0,1) 100%);
-    --tier3-banner-shadow: inset 0px 0px 100px 1px rgba(0, 0, 0, 0.5);
-    --tier3-banner-hover-background: linear-gradient(180deg, rgba(78,98,18,1) 0%, rgba(192,245,0,1) 100%);
-    --tier3-banner-hover-shadow: inset 0px 0px 100px 1px rgb(0, 0, 0, 1);
-    --tier3-hover-box-shadow: 0px 0px 50px 0px rgb(85, 114, 0);
-}
+    --tier1-banner-background: radial-gradient(circle, rgba(0,212,249,1) 0%, rgba(0,66,181,1) 100%);
+    --tier2-banner-background: radial-gradient(circle, rgba(236,101,101,1) 0%, rgba(71,27,30,1) 100%);
+    --tier3-banner-background: radial-gradient(circle, rgba(177,196,0,1) 0%, rgba(78,98,18,1) 100%);
 
-* {
-    transition: inherit;
-}
+    /* Footer variables */
+    --footer-height: 50px;
+    --footer-background: black;
+}   
 
 body {
     background: var(--main-background);
     color: var(--main-text-color);
     font: var(--main-font);
     display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    gap: var(--large-gap) 0;
+    flex-direction: column;
+    justify-content: space-between;
     min-height: 100vh;
 }
 
 /* Header styles */
 header {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: var(--header-padding);
-    font: var(--button-font);
-    transition: var(--fast-transition);
+    padding: 1em 1em 3em;
 }
 
-header a {
-    background: white;
-    padding: var(--button-padding);
-    border: var(--button-border);
+#header-navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 2em;
+}
+
+.header-button {
+    background: var(--header-button-background);
+    padding: 0.25em 0.5em;
     border-radius: var(--button-border-radius);
+    font: var(--button-font);
     text-align: center;
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: center;
     position: relative;
-    gap: 0 var(--small-gap);
-    flex: 1 1 4em;
-    max-width: 100%;
-    margin: var(--button-margin);
+    transition: background-color var(--fast-transition-speed) ease-in-out;
 }
 
-header a img {
+.button-icon {
     position: absolute;
-    left: 10px;
+    left: 0.5em;
+    top: 0.5em;
     width: var(--button-icon-width);
-    height: var(--button-icon-width);
 }
 
-header a:hover {
+.header-button:hover {
     background: var(--header-button-hover-background);
+}
+
+h1 {
+    font: var(--h1-font);
+    text-align: center;
 }
 
 /* Main content styles */
 main {
     display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
+    flex-direction: column;
     align-items: center;
-    gap: var(--large-gap) 0;
-    width: 100%;
-}
-
-main h1 {
-    font: var(--h1-font);
-    margin: 0 0 0.5em;
+    row-gap: var(--large-gap); 
 }
 
 /* Card Styles */
 .card {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: stretch;
-    align-items: stretch;
-    width: var(--card-width);
-    max-width: var(--card-max-width);
-    height: var(--card-min-height);
+    height: var(--card-height);
     border-radius: var(--card-border-radius);
-    transition: var(--fast-transition);
+    transition: height var(--fast-transition-speed) ease-in-out;
     background: var(--card-background);
+    box-shadow: var(--card-box-shadow);
     overflow: hidden;
 }
 
 /* The card banner */
 .card-banner {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    align-items: center;
-    height: var(--card-banner-height);
-    padding: var(--card-banner-padding);
+    text-align: center;
+    padding: 2.5em 20em 10.5em;
     color: var(--card-banner-fontcolor);
+    box-shadow: var(--card-banner-box-shadow);
+    transition: height var(--slow-transition-speed) ease-out;
+    transition: box-shadow var(--slow-transition-speed) ease-out;
 }
 
-.card-banner h2 {
+.card-name {
     font: var(--h2-font);
 }
 
-.card-banner h3 {
+.card-price {
     font: var(--h3-font);
+    transition: font-size  var(--fast-transition-speed)  ease-in-out;
 }
 
 /* BANNER BOTTOM */
-.card-banner .card-banner-bottom {
+.card-banner-bottom {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
@@ -185,33 +150,29 @@ main h1 {
     gap: 0.3em;
 } 
 
-.card-banner .card-button {
+.card-prompt {
     font: var(--button-font);
     font-weight: 500;
 }
 
-.card-banner .card-banner-footer {
-    opacity: 0;
+.card-banner-footer {
     scale: 0;
     border-radius: var(--button-border-radius);
     padding: var(--card-banner-footer-padding);
     font-size: var(--card-banner-footer-font-size);
     font-weight: 100;
+    transition: scale  var(--fast-transition-speed)  ease-in-out;
 }
 
 /* The card features section*/
 .card-features {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
     padding: var(--card-features-padding);
-}
+} 
 
 .card-features ul {
     display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
+    flex-flow: column wrap;
+    justify-content: center;
     align-items: center;
 }
 
@@ -221,11 +182,7 @@ main h1 {
     justify-content: space-between;
     align-items: center;
     padding: var(--card-features-li-padding);
-}
-
-.card-features li:last-of-type {
-    border: none;
-}
+} 
 
 .card-features img {
     width: var(--button-icon-width);
@@ -238,6 +195,8 @@ main h1 {
 
     .card-banner {
         height: var(--card-banner-hover-height);
+        box-shadow: var(--card-banner-hover-box-shadow);
+        
     }
 
     .card-price {
@@ -246,7 +205,6 @@ main h1 {
 
     /*Make banner footer appear*/
     .card-banner-footer {
-        opacity: 1;
         scale: 1;
     }
 
@@ -257,57 +215,42 @@ main h1 {
 
 /* Individual cards*/
 /* Tier 1 card */
-#tier1-card {
-    box-shadow: var(--tier1-box-shadow);
-}
-
 #tier1-card .card-banner {
     background: var(--tier1-banner-background);
-    box-shadow: var(--tier1-banner-shadow);
-}
-
-#tier1-card:hover {
-    box-shadow: var(--tier1-hover-box-shadow);
-    .card-banner {
-        background: var(--tier1-banner-hover-background);
-        box-shadow: var(--tier1-banner-hover-shadow);
-    }
 }
 
 /* Tier 2 card */
-#tier2-card {
-    box-shadow: var(--tier2-box-shadow);
-}
-
 #tier2-card .card-banner {
     background: var(--tier2-banner-background);
-    box-shadow: var(--tier2-banner-shadow);
-}
-
-#tier2-card:hover {
-    box-shadow: var(--tier2-hover-box-shadow);
-    .card-banner {
-        background: var(--tier2-banner-hover-background);
-        box-shadow: var(--tier2-banner-hover-shadow);
-    }
 }
 
 /* Tier 3 card */
-#tier3-card {
-    box-shadow: var(--tier3-box-shadow);
-}
-
 #tier3-card .card-banner {
     background: var(--tier3-banner-background);
-    box-shadow: var(--tier3-banner-shadow);
 }
 
-#tier3-card:hover {
-    box-shadow: var(--tier3-hover-box-shadow);
-    .card-banner {
-        background: var(--tier3-banner-hover-background);
-        box-shadow: var(--tier3-banner-hover-shadow);
+/* Site footer */
+footer {
+    width: 100%;
+    padding: calc(var(--footer-height) / 2) 0;
+    text-align: center;
+}
+
+/* RESPONSIVE */
+@media (min-width: 756px) {
+    main {
+        flex-flow: row-reverse wrap;
+        justify-content: center;
+        align-items: center;
+        gap: var(--large-gap) var(--large-gap);
+    }
+    
+    .header-button {
+        width: var(--header-button-desktop-width);
+    }
+
+    #header-navbar {
+        flex-flow: row-reverse nowrap;
+        justify-content: flex-start;
     }
 }
-
-/* Responsive */
