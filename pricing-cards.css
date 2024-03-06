@@ -1,8 +1,8 @@
 :root {
     --large-gap: 2.5em;
     --small-gap: 1em;
-    --fast-transition-speed: 0.25s;
-    --slow-transition-speed: 0.5s;
+    --fast-transition-speed: 0.5s;
+    --slow-transition-speed: 1s;
 
     --h1-font: 900 44px/1.5 "IBM Plex Sans Arabic", sans-serif;
     --h2-font: 400 32px/1.5 "Rubik", sans-serif;
@@ -15,13 +15,18 @@
     /* Header variables */
     --header-button-background: white;
     --header-button-hover-background: rgb(223, 223, 223);
+    --header-button-min-width: 15em;
+    --header-button-mobile-width: 90%;
     --header-button-desktop-width: 20%;
     --button-border-radius: 0.5em;
     --button-font: 300 20px/1.5 "Rubik", sans-serif;
     --button-icon-width: 20px;
 
     /* Card general variables */
-    --card-width: 350px;
+    --card-mobile-width: 90%;
+    --card-desktop-width: 350px;
+    --card-height: 370px;
+    --card-height-hover: 450px;
     --card-border-radius: 0.8em 0.8em 0.4em 0.4em;
     --card-background: rgb(233, 233, 233);
     --card-box-shadow: 0px 10px 25px 2px rgba(0, 0, 0, 0.5);
@@ -30,8 +35,6 @@
     --card-banner-fontcolor: rgb(223, 223, 223);
     --card-banner-price-hover-size: 64px;
     --card-banner-box-shadow: inset 0px 0px 100px 1px rgba(0, 0, 0, 0.5);
-
-    /* Card hover variables */
     --card-banner-hover-box-shadow: inset 0px 0px 100px 1px rgb(0, 0, 0, 1);
 
     /* Individual card variables */
@@ -60,12 +63,14 @@ header {
 
 #header-navbar {
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
     justify-content: center;
+    align-items: center;
     margin-bottom: 2em;
 }
 
 .header-button {
+    width: var(--header-button-mobile-width);
     background: var(--header-button-background);
     padding: 0.25em 0.5em;
     border-radius: var(--button-border-radius);
@@ -101,13 +106,15 @@ main {
 
 /* Card Styles */
 .card {
-    width: var(--card-width);
+    display: flex;
+    flex-direction: column;
     height: var(--card-height);
+    width: var(--card-mobile-width);
     border-radius: var(--card-border-radius);
     padding-bottom: 0.5em;
-    transition: height var(--fast-transition-speed);
     background: var(--card-background);
     box-shadow: var(--card-box-shadow);
+    transition: height var(--fast-transition-speed);
     overflow: hidden;
 }
 
@@ -115,11 +122,10 @@ main {
 .card-banner {
     text-align: center;
     padding-top: 0.5em;
-    padding-bottom: 0.25em;
+    padding-bottom: 0.5em;
     color: var(--card-banner-fontcolor);
     box-shadow: var(--card-banner-box-shadow);
-    transition: height var(--fast-transition-speed);
-    transition: box-shadow var(--fast-transition-speed);
+    transition: box-shadow var(--fast-transition-speed), height var(--fast-transition-speed);
 }
 
 .card-name {
@@ -141,16 +147,19 @@ main {
 }
 
 .card-banner-footer {
-    display: none;
-    scale: 0;
+    position: absolute;
+    visibility: hidden;
     opacity: 0;
     margin-top: 0.5em;
-    margin-bottom: 0.5em;
     font-weight: 100;
-    transition: scale var(--fast-transition-speed), visibility 0s;
+    transition: opacity var(--slow-transition-speed);
 }
 
 /* The card features section*/
+.card-features {
+    transition: padding-top var(--fast-transition-speed);
+}
+
 .card-features li {
     text-align: center;
     position: relative;
@@ -165,23 +174,28 @@ main {
 
 /* Hovering the card */
 .card:hover {
+    height: var(--card-height-hover);
+
     .card-banner {
         box-shadow: var(--card-banner-hover-box-shadow);
+    }
+
+    .card-features {
+        padding-top: 0.75em;
     }
 
     .card-price {
         transform: scale(1.5);
         margin-top: 0.25em;
-        margin-bottom: 0.75em;
+        margin-bottom: 0.5em;
     }
 
     /*Make banner footer appear*/
     .card-banner-footer {
-        display: block;
+        position: static;
         opacity: 1;
-        scale: 1;
+        visibility: visible;
     }
-
 }
 
 /* Individual cards*/
@@ -207,6 +221,12 @@ footer {
 }
 
 /* RESPONSIVE */
+@media (min-width: 388px) {
+    .card {
+        width: var(--card-desktop-width);
+    }
+}
+
 @media (min-width: 756px) {
     main {
         flex-flow: row-reverse wrap;
@@ -214,13 +234,13 @@ footer {
         align-items: center;
         gap: var(--large-gap) var(--large-gap);
     }
-    
+
     .header-button {
+        min-width: var(--header-button-min-width);
         width: var(--header-button-desktop-width);
     }
 
     #header-navbar {
-        flex-flow: row-reverse nowrap;
-        justify-content: flex-start;
+        flex-direction: row-reverse;
     }
 }

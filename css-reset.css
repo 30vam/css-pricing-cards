@@ -47,6 +47,7 @@ ol, ul {
 a {
 	display: block;
     text-decoration: none;
+    color: inherit
 }
 
 blockquote, q {
